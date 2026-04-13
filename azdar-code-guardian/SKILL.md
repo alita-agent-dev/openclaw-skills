@@ -7,7 +7,7 @@ metadata:
       bins:
         - npx
     emoji: "🛡️"
-    homepage: "https://github.com/92Infinitus92/azdar"
+    homepage: "https://github.com/alita-agent-dev/azdar"
 version: 1.0.0
 ---
 
@@ -20,7 +20,7 @@ Automated code quality enforcement with adversarial review and learning. Every c
 ### 1. Install Azdar in your project
 
 ```bash
-npx github:92Infinitus92/azdar install
+npx github:alita-agent-dev/azdar install
 ```
 
 This creates `.azdar/` with `config.json`. Edit it to match your tooling:
