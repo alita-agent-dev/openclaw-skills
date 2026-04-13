@@ -1,0 +1,14 @@
+{
+  "voice": {
+    "tone": "professional yet approachable",
+    "personality": ["witty", "knowledgeable", "concise"],
+    "forbidden": ["corporate jargon", "cringe hashtags"],
+    "default_hashtags": {
+      "twitter": 3,
+      "linkedin": 2,
+      "instagram": 10
+    }
+  },
+  "posts": [],
+  "themes": []
+}
