@@ -1,59 +1,48 @@
 # Workflow Patterns
 
-## Pattern 1: TDD-First (Test-Driven Development)
+Common Azdar workflow patterns. Use these to inform how you frame the `task` in `azdar_start`.
 
-Best for: New features, critical business logic, APIs.
+## TDD (Test-Driven Development)
 
-1. Start task: "Add X with TDD"
-2. Calibrate → Research → Specify
-3. Plan includes: write tests FIRST, then implement
-4. Implement phase writes tests before code
-5. Gate: tests must pass, coverage ≥ threshold
-6. Adversarial review catches edge cases tests missed
+1. Start with `azdar_start` describing the feature
+2. In **plan** phase: write test cases first
+3. In **implement**: write minimal code to pass tests
+4. **Review**: verify test coverage ≥ 80%, no skipped tests
 
-## Pattern 2: Security-Focused
+**Task framing:** "Implement [feature] using TDD. Write failing tests first, then minimal implementation."
 
-Best for: Auth flows, payment processing, user input handling.
+## Security-Focused
 
-1. Start task: "Add X with security review"
-2. Calibrate → deep (forced)
-3. Specify includes: threat model, attack surface analysis
-4. Implement with security checklist in context
-5. Adversarial review uses hostile bounty-hunter prompt
-6. Retrospection captures security learnings as global rules
+1. `azdar_start` with security emphasis
+2. **Research** phase identifies attack vectors
+3. **Specify** defines security requirements as constraints
+4. **Review** uses security checklist from `review-checklist.md`
 
-## Pattern 3: Legacy Refactor
+**Task framing:** "Security audit and harden [component]. Focus on input validation, auth, and data exposure."
 
-Best for: Migrating old code, dependency upgrades, framework migration.
+## Legacy Refactor
 
-1. Start task: "Refactor X to use Y"
-2. Calibrate → deep
-3. Research phase: maps all usages, identifies breaking changes
-4. Specify: lists every file touched, expected behavior changes
-5. Plan: incremental waves (one module at a time)
-6. Gate: all existing tests still pass after each wave
+1. `azdar_start` targeting specific module/file
+2. **Research**: map dependencies and callers
+3. **Plan**: incremental refactor steps (one file at a time)
+4. **Implement**: preserve behavior, add tests before changing
 
-## Pattern 4: Bug Fix
+**Task framing:** "Refactor [module] for [clarity/performance/maintainability]. Preserve all existing behavior."
 
-Best for: Production bugs, regression fixes.
+## Bug Fix
 
-1. Start task: "Fix bug where X happens when Y"
-2. Calibrate → standard
-3. Research: find root cause, identify affected paths
-4. Specify: root cause, fix approach, regression test
-5. Plan: minimal change + regression test
-6. Gate: regression test passes, no new test failures
+1. `azdar_start` describing the bug with reproduction steps
+2. **Research**: trace root cause
+3. **Specify**: define the fix scope (minimal)
+4. **Review**: verify fix doesn't introduce regressions
 
-## Pattern 5: Quick Patch (Skip Review)
+**Task framing:** "Fix bug: [description]. Reproduction: [steps]. Expected: [behavior]."
 
-Best for: Hotfixes, typos, config changes.
+## Quick Patch
 
-1. Start task with "quick:" prefix: "quick: fix typo in README"
-2. Calibrate → standard
-3. Skips adversarial review
-4. Still runs verification (test/lint/build)
-5. Gate: verification passes only
+For urgent fixes with abbreviated workflow:
+1. `azdar_start` with `scope: "quick"`
+2. Skip research/specify — go straight to plan → implement
+3. Light review (syntax + tests only)
 
-## Combining Patterns
-
-Tasks can combine patterns. Example: "Add payment processing with security review and TDD" uses both Pattern 1 and 2.
+**Task framing:** "Quick fix: [issue]. Minimal change, ship fast."

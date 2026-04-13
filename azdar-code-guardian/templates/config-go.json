@@ -1,0 +1,12 @@
+{
+  "lint": "golangci-lint run ./...",
+  "test": "go test ./... -count=1",
+  "build": "go build ./...",
+  "security": "gosec ./...",
+  "phases": ["calibrate", "research", "specify", "plan", "implement", "review", "retrospect"],
+  "review": {
+    "checklist": "references/review-checklist.md",
+    "minScore": 30
+  },
+  "ignore": ["vendor", ".git"]
+}

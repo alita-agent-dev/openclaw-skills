@@ -1,0 +1,12 @@
+{
+  "lint": "npx eslint . --ext .ts,.tsx",
+  "test": "npx jest --passWithNoTests",
+  "build": "npx tsc --noEmit",
+  "security": "npx audit-ci --moderate",
+  "phases": ["calibrate", "research", "specify", "plan", "implement", "review", "retrospect"],
+  "review": {
+    "checklist": "references/review-checklist.md",
+    "minScore": 30
+  },
+  "ignore": ["node_modules", "dist", "build", "coverage", ".git"]
+}

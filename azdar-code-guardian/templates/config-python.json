@@ -1,0 +1,12 @@
+{
+  "lint": "ruff check .",
+  "test": "pytest --tb=short -q",
+  "build": "python -m compileall . -q",
+  "security": "bandit -r . -ll",
+  "phases": ["calibrate", "research", "specify", "plan", "implement", "review", "retrospect"],
+  "review": {
+    "checklist": "references/review-checklist.md",
+    "minScore": 30
+  },
+  "ignore": ["__pycache__", ".venv", "venv", "*.egg-info", ".git", ".mypy_cache"]
+}

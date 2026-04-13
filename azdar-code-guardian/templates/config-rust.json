@@ -1,0 +1,12 @@
+{
+  "lint": "cargo clippy -- -D warnings",
+  "test": "cargo test --quiet",
+  "build": "cargo build --release",
+  "security": "cargo audit",
+  "phases": ["calibrate", "research", "specify", "plan", "implement", "review", "retrospect"],
+  "review": {
+    "checklist": "references/review-checklist.md",
+    "minScore": 30
+  },
+  "ignore": ["target", ".git"]
+}

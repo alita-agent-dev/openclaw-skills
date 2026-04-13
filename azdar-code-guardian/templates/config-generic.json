@@ -1,0 +1,12 @@
+{
+  "lint": "echo 'No linter configured'",
+  "test": "echo 'No test runner configured'",
+  "build": "echo 'No build step configured'",
+  "security": "echo 'No security scanner configured'",
+  "phases": ["calibrate", "research", "specify", "plan", "implement", "review", "retrospect"],
+  "review": {
+    "checklist": "references/review-checklist.md",
+    "minScore": 30
+  },
+  "ignore": [".git", "node_modules"]
+}

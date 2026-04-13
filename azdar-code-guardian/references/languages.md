@@ -1,85 +1,68 @@
-# Language-Specific Tooling Configs
+# Language Tooling Configs
 
-## TypeScript / Node.js
+Per-language lint/test/build/security commands for `.azdar/config.json`.
+
+## TypeScript / Node
 
 ```json
 {
-  "tooling": {
-    "test": "npm test",
-    "lint": "npx eslint src/ --max-warnings 0",
-    "build": "npm run build",
-    "security": "npm audit --audit-level=moderate"
-  },
-  "verification": {
-    "tdd_threshold": 50,
-    "coverage_threshold": 80
-  }
+  "lint": "npx eslint . --ext .ts,.tsx",
+  "test": "npx jest --passWithNoTests",
+  "build": "npx tsc --noEmit",
+  "security": "npx audit-ci --moderate"
 }
 ```
+
+**Deps:** `eslint`, `@typescript-eslint/*`, `jest`, `typescript`
 
 ## Python
 
 ```json
 {
-  "tooling": {
-    "test": "pytest tests/ -v --tb=short",
-    "lint": "ruff check src/",
-    "build": "python -m py_compile src/",
-    "security": "pip audit || safety check"
-  }
+  "lint": "ruff check .",
+  "test": "pytest --tb=short -q",
+  "build": "python -m compileall . -q",
+  "security": "bandit -r . -ll"
 }
 ```
+
+**Deps:** `ruff`, `pytest`, `bandit`
 
 ## Rust
 
 ```json
 {
-  "tooling": {
-    "test": "cargo test",
-    "lint": "cargo clippy -- -D warnings",
-    "build": "cargo build --release",
-    "security": "cargo audit"
-  }
+  "lint": "cargo clippy -- -D warnings",
+  "test": "cargo test --quiet",
+  "build": "cargo build --release",
+  "security": "cargo audit"
 }
 ```
+
+**Deps:** `clippy`, `cargo-audit`
 
 ## Go
 
 ```json
 {
-  "tooling": {
-    "test": "go test ./... -v",
-    "lint": "golangci-lint run",
-    "build": "go build ./...",
-    "security": "govulncheck ./..."
-  }
+  "lint": "golangci-lint run ./...",
+  "test": "go test ./... -count=1",
+  "build": "go build ./...",
+  "security": "gosec ./..."
 }
 ```
+
+**Deps:** `golangci-lint`, `gosec`
 
 ## Ruby
 
 ```json
 {
-  "tooling": {
-    "test": "bundle exec rspec",
-    "lint": "bundle exec rubocop",
-    "build": "bundle exec rake build",
-    "security": "bundle audit check"
-  }
+  "lint": "bundle exec rubocop",
+  "test": "bundle exec rspec --format progress",
+  "build": "bundle check",
+  "security": "bundle audit check"
 }
 ```
 
-## Skip Tooling (No Build Step)
-
-For projects without a build/test toolchain, or when working in environments without tooling installed:
-
-```json
-{
-  "tooling": {
-    "test": "echo 'skip: no test runner'",
-    "lint": "echo 'skip: no linter'",
-    "build": "echo 'skip: no build step'",
-    "security": "echo 'skip: no security scanner'"
-  }
-}
-```
+**Deps:** `rubocop`, `rspec`, `bundler-audit`
